@@ -1,0 +1,42 @@
+<%
+            try{
+  
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","");
+            statement = connection.createStatement();
+           String DisplayQuery ="SELECT * FROM student";
+            resultSet = statement.executeQuery(DisplayQuery);
+ 
+ 
+          while(resultSet.next()){
+            %>
+
+            <tr>
+                <td><%=resultSet.getString("studFullName")%></td>
+                <td><%=resultSet.getString("studICNumber")%></td>
+                <td><%=resultSet.getString("studRegNumber")%></td>
+                <td><%=resultSet.getString("studAddress")%></td>
+                <td><%=resultSet.getString("studGender")%></td>
+                <td><%=resultSet.getString("studPhoneNumber")%></td>
+                <td><%=resultSet.getString("studBlock")%></td>
+                <td><%=resultSet.getString("studRoom")%></td>
+
+                <td>
+                    <a href="AdminDelete.jsp?id=<%=resultSet.getString("id")%>" class="btn1" onclick="return confirm('Proceed to Decline')">Decline Student</a>
+                    <br>
+                    <br>
+                    <a href="AdminView.jsp?id=<%=resultSet.getString("id")%>" class="btn2" onclick="return confirm('Proceed to Approve')">Approve Student</a>
+                </td>
+            </tr>
+
+            <%
+                  }
+            }
+              catch(Exception e){
+                  out.println(e);
+                  }
+ 
+            %>
