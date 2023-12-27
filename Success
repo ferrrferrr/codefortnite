@@ -1,0 +1,29 @@
+<%-- 
+    Document   : SuccessAlert
+    Created on : 27 Dec 2023, 3:00:39 pm
+    Author     : User
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Alert</title>
+        
+        <script type ="text/javascript">
+            function alertSuccess(){
+                alert("Student Information has been registered!");
+                
+            }
+            window.onload = function(){
+                
+                alertSuccess();
+            }
+            
+        </script>
+    </head>
+    <body>
+        <jsp:include page="StudentInformation.jsp"></jsp:include>
+    </body>
+</html>
