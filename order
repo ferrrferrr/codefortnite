@@ -1,7 +1,7 @@
 1.index.jsp first
 2.make login for jsecurity and change in tomcat users 
-3.then make form based on question
-4.implement insert code for database
+3.then make form based on question and create database
+4.implement insert code for database 
 
 (also make logout,error and  Successalert if remember la)
 
