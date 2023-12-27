@@ -1,0 +1,24 @@
+<%
+
+String id = request.getParameter("id");
+try{
+
+
+
+Connection connection = null;
+Statement statement= null;
+
+Class.forName("com.mysql.jdbc.Driver");
+connection =DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","");
+statement = connection.createStatement();
+String DeleteQuery = "DELETE FROM student WHERE id= "+id;
+
+statement.executeUpdate(DeleteQuery);
+
+    }
+    catch(Exception e){
+    
+    out.println(e);
+    }
+
+%>
