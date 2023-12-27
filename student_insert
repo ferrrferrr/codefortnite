@@ -1,0 +1,16 @@
+
+               String insertQuery = "INSERT INTO student (studFullName, studICNumber, studRegNumber, studAddress,studGender, studPhoneNumber, studRoom, studBlock,status)"
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+
+              Connection connection = null;
+            PreparedStatement preparedStatement = null;
+
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","");
+
+            preparedStatement = connection.prepareStatement(insertQuery);  
+
+
+preparedStatement.executeUpdate();
