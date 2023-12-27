@@ -1,0 +1,102 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*,java.util.*" %>
+<%
+    
+try{
+
+     Connection connection = null;
+                Statement statement = null;
+                
+                 ResultSet resultSet = null;
+                String id = request.getParameter("id");
+               
+                Class.forName("com.mysql.jdbc.Driver");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","");
+                statement = connection.createStatement();   
+                String UpdateQuery = "SELECT * FROM student WHERE id = "+id;
+               resultSet =statement.executeQuery(UpdateQuery);
+
+while (resultSet.next()){
+%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Kamsis Information</title>
+    </head>
+    <body>
+    <center>
+        <h1>Admin View</h1>
+        <form action="AdminProcess.jsp" method="post">
+       <input type="hidden" name="id" value="<%=resultSet.getString("id")%>">
+        <table>
+       
+            <tr>
+                <td>Student Name</td>
+                <td>:</td>
+                <td><%=resultSet.getString("studFullName")%></td>
+            </tr>
+               <tr>
+                <td>Student Identification Number</td>
+                <td>:</td>
+                <td><%=resultSet.getString("studICNumber")%></td>
+            </tr>
+               <tr>
+                <td>Student Registration Number</td>
+                <td>:</td>
+                <td><%=resultSet.getString("studRegNumber")%></td>
+            </tr>
+               <tr>
+                <td>Student Address</td>
+                <td>:</td>
+                <td><%=resultSet.getString("studAddress")%></td>
+            </tr>
+               <tr>
+                <td>Student Gender</td>
+                <td>:</td>
+                <td><%=resultSet.getString("studGender")%></td>
+            </tr>
+               <tr>
+                <td>Student Room</td>
+                <td>:</td>
+                <td><%=resultSet.getString("studRoom")%></td>
+            </tr>
+               <tr>
+                <td>Student Block</td>
+                <td>:</td>
+                <td><%=resultSet.getString("studBlock")%></td>
+            </tr>
+            
+            
+               <tr>
+                <td>Status</td>
+                <td>:</td>
+                <td>
+                    <select name="status">
+                        <option value ="Accepted">Accept</option>
+                         <option value ="Declined">Decline</option>
+                        
+                    </select>
+                
+                </td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                 <td></td>
+                 <td><input type="submit" value="Submit"></td>
+            </tr>
+            
+        </table>
+        </form>
+    </center>
+    </body>
+</html>
+<%
+    }
+}catch(Exception e){
+out.println(e);
+}
+
+%>
