@@ -1,0 +1,52 @@
+#when admin go here and update the status it changed in the database and in other file for viewing
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*,java.util.*"  %>
+<%
+try{
+String status = request.getParameter("status");
+String id = request.getParameter("id");
+
+PreparedStatement preparedStatement = null;
+Connection connection = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+
+connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/studentinfo","root","");
+String sql = "UPDATE student set status =? WHERE id=?";
+
+preparedStatement = connection.prepareStatement(sql);
+
+preparedStatement.setString(1,status);
+preparedStatement.setString(2,id);
+
+int i = preparedStatement.executeUpdate();
+
+if(i>0){
+    if("Accept".equals(status)){
+%>
+<script>
+    alert("Accepted");
+
+</script>
+
+
+<%
+    }else if("Decline".equals(status)){
+%>
+<script>
+    alert("Declined");
+
+</script>
+<%
+       } // end of else if
+
+    } // end of outer if
+
+} catch(Exception e) {
+    out.println(e);
+}
+        
+%>
+
