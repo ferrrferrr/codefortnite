@@ -1,0 +1,7 @@
+AdminDisplay is where the admin either approved or decline
+
+Admin will be prompted to either delete or approved(if delete it will delete in database if approved it will goes to AdminView)
+
+AdminView is where admin if admin approved it goes to AdminView and here admin will choose whether to accept or decline
+
+StudentInformation is where student register and the data will go in to database
